@@ -19,7 +19,15 @@ config/icon="res://assets/icon.svg"
 
 window/size/viewport_width=370
 window/size/viewport_height=600
+window/stretch/mode="viewport"
+window/stretch/aspect="keep_height"
 window/handheld/orientation=1
+
+[layer_names]
+
+2d_navigation/layer_1="Terrain"
+2d_navigation/layer_2="Player1"
+2d_navigation/layer_3="Player2"
 
 [rendering]
 

@@ -1,16 +1,91 @@
-[gd_scene load_steps=3 format=3 uid="uid://dolv0bumfs81l"]
+[gd_scene load_steps=9 format=3 uid="uid://dolv0bumfs81l"]
 
 [ext_resource type="Texture2D" uid="uid://kds70qde6meu" path="res://assets/tower.png" id="1_7p6cm"]
+[ext_resource type="Script" path="res://scenes/tower.gd" id="1_l171u"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pbjdn"]
 size = Vector2(42, 50)
 
-[node name="tower" type="Area2D"]
+[sub_resource type="Animation" id="Animation_y302j"]
+resource_name = "Idle"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
 
-[node name="spr_tower" type="Sprite2D" parent="."]
-texture = ExtResource("1_7p6cm")
+[sub_resource type="Animation" id="Animation_oqpe5"]
+resource_name = "Hurt"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.870588, 0, 0.211765, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_pns3n"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.870588, 0, 0.211765, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_luyaq"]
+_data = {
+"Hurt": SubResource("Animation_oqpe5"),
+"Idle": SubResource("Animation_y302j"),
+"RESET": SubResource("Animation_pns3n")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_42g7w"]
+radius = 96.0
+
+[node name="tower" type="Area2D"]
+texture_filter = 1
+script = ExtResource("1_l171u")
 
 [node name="col_tower" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_pbjdn")
+debug_color = Color(0.960784, 0, 0.509804, 0.419608)
 
-[node name="tower" type="Node2D" parent="."]
+[node name="spr_tower" type="Sprite2D" parent="."]
+modulate = Color(0.870588, 0, 0.211765, 1)
+texture = ExtResource("1_7p6cm")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../spr_tower")
+autoplay = "Idle"
+libraries = {
+"": SubResource("AnimationLibrary_luyaq")
+}
+
+[node name="Damage_area" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="col_damage" type="CollisionShape2D" parent="Damage_area"]
+shape = SubResource("CircleShape2D_42g7w")
+
+[connection signal="body_entered" from="Damage_area" to="." method="_on_damage_area_body_entered"]

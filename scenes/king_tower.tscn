@@ -8,6 +8,7 @@ size = Vector2(54, 62)
 [node name="king_tower" type="Area2D"]
 
 [node name="spr_ktower" type="Sprite2D" parent="."]
+texture_filter = 1
 texture = ExtResource("1_i8bye")
 
 [node name="col_tower" type="CollisionShape2D" parent="."]
