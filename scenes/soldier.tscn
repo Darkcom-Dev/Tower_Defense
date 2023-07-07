@@ -1,15 +1,30 @@
-[gd_scene load_steps=27 format=3 uid="uid://b73qehd3ksue2"]
+[gd_scene load_steps=28 format=3 uid="uid://b73qehd3ksue2"]
 
 [ext_resource type="Texture2D" uid="uid://bjli8xty6kca7" path="res://assets/SpriteSheet_characters.png" id="1_1bnva"]
 [ext_resource type="Script" path="res://scenes/soldier.gd" id="1_nvt1h"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jhwe2"]
-radius = 8.0
-height = 16.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_56nh7"]
 
 [sub_resource type="Animation" id="Animation_wxn1t"]
 resource_name = "Down_Idle"
 length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("spr_soldier:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+
+[sub_resource type="Animation" id="Animation_51neg"]
+resource_name = "Down_Walk"
+length = 0.3
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -36,23 +51,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [0]
-}
-
-[sub_resource type="Animation" id="Animation_51neg"]
-resource_name = "Down_Walk"
-length = 0.3
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("spr_soldier:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [0, 1, 2]
 }
 
 [sub_resource type="Animation" id="Animation_87grv"]
@@ -193,11 +191,16 @@ graph_offset = Vector2(-12, -221)
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_3oruw"]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_60h0b"]
+radius = 32.0
+
 [node name="soldier" type="CharacterBody2D"]
+y_sort_enabled = true
+input_pickable = true
 script = ExtResource("1_nvt1h")
 
 [node name="col_soldier" type="CollisionShape2D" parent="."]
-shape = SubResource("CapsuleShape2D_jhwe2")
+shape = SubResource("CircleShape2D_56nh7")
 
 [node name="spr_soldier" type="Sprite2D" parent="."]
 texture_filter = 1
@@ -216,12 +219,25 @@ debug_enabled = true
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 24.0
-autostart = true
 
 [node name="anim_tree" type="AnimationTree" parent="."]
 tree_root = SubResource("AnimationNodeStateMachine_w0ik8")
 anim_player = NodePath("../AnimationPlayer")
 parameters/playback = SubResource("AnimationNodeStateMachinePlayback_3oruw")
 
+[node name="damage_area" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 0
+
+[node name="col_damage" type="CollisionShape2D" parent="damage_area"]
+shape = SubResource("CircleShape2D_60h0b")
+debug_color = Color(0.964706, 0, 0.486275, 0.419608)
+
+[node name="hurt_timer" type="Timer" parent="."]
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
 [connection signal="velocity_computed" from="Agent" to="." method="_on_agent_velocity_computed"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="body_entered" from="damage_area" to="." method="_on_damage_area_body_entered"]
+[connection signal="timeout" from="hurt_timer" to="." method="_on_hurt_timer_timeout"]

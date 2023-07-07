@@ -25,8 +25,11 @@ window/handheld/orientation=1
 
 [layer_names]
 
+2d_physics/layer_1="Terrain"
 2d_navigation/layer_1="Terrain"
+2d_physics/layer_2="Team_Red"
 2d_navigation/layer_2="Player1"
+2d_physics/layer_3="Team_Blue"
 2d_navigation/layer_3="Player2"
 
 [rendering]

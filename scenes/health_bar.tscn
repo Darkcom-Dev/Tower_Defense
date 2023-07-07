@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://cg62420mdncpj"]
+
+[ext_resource type="Texture2D" uid="uid://bethv3hk11vlh" path="res://assets/BG-Health.png" id="1_6cwiw"]
+[ext_resource type="Texture2D" uid="uid://dayswc51s0arm" path="res://assets/health_bar.png" id="2_2oji4"]
+
+[node name="health_bar" type="Sprite2D"]
+texture_filter = 1
+texture = ExtResource("1_6cwiw")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_2oji4")
