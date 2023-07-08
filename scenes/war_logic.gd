@@ -25,16 +25,16 @@ func _ready():
 func _on_red_team_timer_timeout():
 	var red_soldier_instance = red_soldier.instantiate()
 	root.call_deferred('add_child', red_soldier_instance)
-	var red_x = randi_range(origin_rect_red_team.x,end_rect_red_team.x)
-	var red_y = randi_range(origin_rect_red_team.y,end_rect_red_team.y)
+	var red_x = randf_range(origin_rect_red_team.x,end_rect_red_team.x)
+	var red_y = randf_range(origin_rect_red_team.y,end_rect_red_team.y)
 	var red_position = Vector2(red_x,red_y)
 	red_soldier_instance.global_position = red_position
 
 func _on_blue_team_timer_timeout():
 	var blue_soldier_instance = blue_soldier.instantiate()
 	root.call_deferred('add_child', blue_soldier_instance)
-	var blue_x = randi_range(origin_rect_blue_team.x,end_rect_blue_team.x)
-	var blue_y = randi_range(origin_rect_blue_team.y,end_rect_blue_team.y)
+	var blue_x = randf_range(origin_rect_blue_team.x,end_rect_blue_team.x)
+	var blue_y = randf_range(origin_rect_blue_team.y,end_rect_blue_team.y)
 	var blue_position = Vector2(blue_x, blue_y)
 	blue_soldier_instance.global_position = blue_position
 	

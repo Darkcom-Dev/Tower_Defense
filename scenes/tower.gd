@@ -43,7 +43,8 @@ func get_collisions_info():
 	print('collision_mask -> blue: ' + str(get_collision_mask_value(3)) + ' red: ' + str(get_collision_mask_value(2)))
 	print('damage_area_mask -> blue:' +str($damage_area.get_collision_mask_value(3)) + ' red: ' + str($damage_area.get_collision_mask_value(2)))
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):	pass
+func _process(_delta):
+	$spr_tower.z_index = position.y
 
 func set_damage(hit_damage : int):
 	

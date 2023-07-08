@@ -39,7 +39,7 @@ func set_damage(hit_damage : int):
 	var normalize_health = health / max_health
 	$health_bar.update_health_bar(normalize_health)
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	pass
 
 

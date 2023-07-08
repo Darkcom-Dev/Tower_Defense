@@ -17,10 +17,10 @@ tracks/0/path = NodePath("spr_soldier:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [9, 10, 11]
+"values": [9]
 }
 
 [sub_resource type="Animation" id="Animation_51neg"]
@@ -196,26 +196,26 @@ graph_offset = Vector2(-12, -221)
 [sub_resource type="CircleShape2D" id="CircleShape2D_60h0b"]
 radius = 32.0
 
-[node name="soldier" type="CharacterBody2D" groups=["team_red"]]
+[node name="red_soldier" type="CharacterBody2D" groups=["team_red"]]
 y_sort_enabled = true
 collision_layer = 2
 collision_mask = 5
 input_pickable = true
 script = ExtResource("1_aww6x")
-target_team = "team_red"
+target_team = "team_blue"
 bullet = ExtResource("2_i2xme")
 
 [node name="col_soldier" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_56nh7")
 
 [node name="spr_soldier" type="Sprite2D" parent="."]
-modulate = Color(1, 0, 0, 1)
 texture_filter = 1
 texture = ExtResource("3_brrty")
 hframes = 9
 vframes = 6
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "Down_Idle"
 libraries = {
 "": SubResource("AnimationLibrary_kfd0x")
 }
@@ -234,6 +234,7 @@ anim_player = NodePath("../AnimationPlayer")
 parameters/playback = SubResource("AnimationNodeStateMachinePlayback_3oruw")
 
 [node name="damage_area" type="Area2D" parent="."]
+visible = false
 collision_layer = 0
 collision_mask = 4
 

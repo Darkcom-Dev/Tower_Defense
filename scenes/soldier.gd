@@ -119,9 +119,9 @@ func anim_control():
 func _on_timer_timeout():
 	randomize()
 	if is_in_group('team_blue'):
-		set_destination(Vector2(randf_range(32,330), randf_range(64, 150)))
+		set_destination(Vector2(randf_range(704,832), randf_range(128, 464)))
 	elif is_in_group('team_red'):
-		set_destination(Vector2(randf_range(32,330), randf_range(360, 464)))
+		set_destination(Vector2(randf_range(32,160), randf_range(128, 464)))
 	$Timer.wait_time = (randf_range(10,25))
 
 func _on_mouse_entered():

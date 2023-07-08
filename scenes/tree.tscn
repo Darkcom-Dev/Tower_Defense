@@ -1,0 +1,59 @@
+[gd_scene load_steps=10 format=3 uid="uid://djuonx43rgsp2"]
+
+[ext_resource type="Script" path="res://scenes/tree.gd" id="1_jbst2"]
+[ext_resource type="Texture2D" uid="uid://un0h3h4r5qh1" path="res://assets/tree.png" id="1_r404p"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_s4va5"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_w1g7b"]
+radius = 17.1172
+
+[sub_resource type="Gradient" id="Gradient_hy5aq"]
+offsets = PackedFloat32Array(0, 0.278539, 0.639269, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0.921569, 0.705882, 0, 1, 0.913851, 0.159227, 0, 1, 1, 0, 0, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_jsnca"]
+gradient = SubResource("Gradient_hy5aq")
+
+[sub_resource type="Curve" id="Curve_6dohp"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_u5m7p"]
+curve = SubResource("Curve_6dohp")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_hc4av"]
+emission_shape = 1
+emission_sphere_radius = 11.49
+particle_flag_disable_z = true
+gravity = Vector3(0, -98, 0)
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+scale_max = 5.0
+scale_curve = SubResource("CurveTexture_u5m7p")
+color_ramp = SubResource("GradientTexture1D_jsnca")
+
+[node name="tree" type="CharacterBody2D" groups=["terrain"]]
+collision_mask = 6
+script = ExtResource("1_jbst2")
+health = 50.0
+
+[node name="spr_tree" type="Sprite2D" parent="."]
+position = Vector2(-2, -20)
+texture = ExtResource("1_r404p")
+
+[node name="col_tree" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_s4va5")
+
+[node name="damage_area" type="Area2D" parent="."]
+collision_mask = 7
+
+[node name="col_damage" type="CollisionShape2D" parent="damage_area"]
+shape = SubResource("CircleShape2D_w1g7b")
+debug_color = Color(0.980392, 0, 0.364706, 0.419608)
+
+[node name="fire" type="GPUParticles2D" parent="."]
+amount = 1
+process_material = SubResource("ParticleProcessMaterial_hc4av")
+
+[connection signal="body_entered" from="damage_area" to="." method="_on_damage_area_body_entered"]
