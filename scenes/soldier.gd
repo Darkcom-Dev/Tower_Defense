@@ -107,14 +107,10 @@ func anim_control():
 	
 	if abs(velocity.x) > abs(velocity.y):
 		$spr_soldier.flip_h = velocity.x < 0
-		playback.travel('Right_Walk' if velocity.x > 5 else 'Right_Idle')
+		playback.travel('Right_Idle')
 	if abs(velocity.y) > abs(velocity.x):
 		var down_facing = velocity.y > 0
-		
-		if velocity.y > 5:
-			playback.travel('Down_Walk' if down_facing else 'Up_Walk')
-		else:
-			playback.travel('Down_Idle' if down_facing else 'Up_Idle')
+		playback.travel('Down_Idle' if down_facing else 'Up_Idle')
 		
 func _on_timer_timeout():
 	randomize()

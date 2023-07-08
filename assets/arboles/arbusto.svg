@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="16.933327mm"
+   height="15.074723mm"
+   viewBox="0 0 16.933327 15.074723"
+   version="1.1"
+   id="svg5295"
+   inkscape:version="1.0.2 (e86c870879, 2021-01-15)"
+   sodipodi:docname="arbusto.svg">
+  <defs
+     id="defs5289">
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient5879">
+      <stop
+         style="stop-color:#22556b;stop-opacity:1"
+         offset="0"
+         id="stop5875" />
+      <stop
+         style="stop-color:#9ac100;stop-opacity:1"
+         offset="1"
+         id="stop5877" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient5871">
+      <stop
+         style="stop-color:#000000;stop-opacity:1;"
+         offset="0"
+         id="stop5867" />
+      <stop
+         style="stop-color:#00ff00;stop-opacity:1"
+         offset="1"
+         id="stop5869" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient5871"
+       id="linearGradient5873"
+       x1="44.125923"
+       y1="132.49271"
+       x2="154.16119"
+       y2="38.166031"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient5879"
+       id="linearGradient5881"
+       x1="140.84204"
+       y1="141.23076"
+       x2="90.029518"
+       y2="19.083103"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient5879"
+       id="linearGradient5902"
+       gradientUnits="userSpaceOnUse"
+       x1="140.84204"
+       y1="141.23076"
+       x2="90.029518"
+       y2="19.083103"
+       gradientTransform="matrix(0.11512716,0,0,0.11512716,27.021388,14.524582)" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient5871"
+       id="linearGradient5904"
+       gradientUnits="userSpaceOnUse"
+       x1="44.125923"
+       y1="132.49271"
+       x2="154.16119"
+       y2="38.166031"
+       gradientTransform="matrix(0.11512716,0,0,0.11512716,27.021388,14.524582)" />
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1.4"
+     inkscape:cx="67.891579"
+     inkscape:cy="100.90743"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     inkscape:document-rotation="0"
+     showgrid="false"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     inkscape:window-width="1366"
+     inkscape:window-height="741"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="0" />
+  <metadata
+     id="metadata5292">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Capa 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-30.537029,-16.415087)">
+    <path
+       id="path1732"
+       style="fill:url(#linearGradient5902);fill-opacity:1;stroke:url(#linearGradient5904);stroke-width:0.598661;stroke-linecap:square;stroke-miterlimit:4;stroke-dasharray:7.18394, 7.18394;stroke-dashoffset:0;stroke-opacity:1;paint-order:stroke fill markers"
+       d="m 37.38623,16.721543 a 5.1192552,5.4450213 0 0 0 -4.465411,2.786977 5.1192552,5.4450213 0 0 0 -1.81515,3.217891 5.1192552,5.4450213 0 0 0 -0.56864,2.486536 5.1192552,5.4450213 0 0 0 4.95326,5.43843 5.1192552,5.4450213 0 0 0 2.262065,0.562214 5.1192552,5.4450213 0 0 0 2.707554,-0.828448 5.1192552,5.4450213 0 0 0 1.591871,0.272838 5.1192552,5.4450213 0 0 0 5.11925,-5.445034 5.1192552,5.4450213 0 0 0 -0.804294,-2.929228 5.1192552,5.4450213 0 0 0 0,-6.91e-4 5.1192552,5.4450213 0 0 0 -5.11925,-5.445034 5.1192552,5.4450213 0 0 0 -1.793673,0.347919 5.1192552,5.4450213 0 0 0 -2.067582,-0.464347 z"
+       inkscape:export-filename="../../Desktop/GAME JAM/follaje_3.png"
+       inkscape:export-xdpi="44.088936"
+       inkscape:export-ydpi="44.088936" />
+  </g>
+</svg>

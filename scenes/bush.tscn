@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://clvedxjeh0avu"]
 
 [ext_resource type="Script" path="res://scenes/tree.gd" id="1_jp2y3"]
-[ext_resource type="Texture2D" uid="uid://dbl38vvmdiff0" path="res://assets/bush.png" id="2_jgbvb"]
+[ext_resource type="Texture2D" uid="uid://ckolosrt31d0o" path="res://assets/arboles/arbusto.svg" id="2_oumqs"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_s4va5"]
 
@@ -39,8 +39,8 @@ script = ExtResource("1_jp2y3")
 health = 50.0
 
 [node name="spr_tree" type="Sprite2D" parent="."]
-position = Vector2(-2, -20)
-texture = ExtResource("2_jgbvb")
+position = Vector2(0, -10)
+texture = ExtResource("2_oumqs")
 
 [node name="col_tree" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_s4va5")

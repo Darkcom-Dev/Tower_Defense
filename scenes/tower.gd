@@ -15,7 +15,15 @@ func _ready():
 	root = get_tree().get_root()
 	set_collisions()
 	set_initial_stats()
-	#get_collisions_info()
+	
+	$spr_tower.z_index = position.y
+	
+	if is_in_group('team_red'):
+		$spr_tower/bandera_roja.visible = true
+		$spr_tower/bandera_roja.z_index = position.y + 1
+	if is_in_group('team_blue'):
+		$spr_tower/bandera_azul.visible = true
+		$spr_tower/bandera_azul.z_index = position.y +1
 
 func set_initial_stats():
 	randomize()

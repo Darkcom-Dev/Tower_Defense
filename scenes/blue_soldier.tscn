@@ -1,11 +1,14 @@
-[gd_scene load_steps=30 format=3 uid="uid://5kbbjr8hka0x"]
+[gd_scene load_steps=20 format=3 uid="uid://5kbbjr8hka0x"]
 
 [ext_resource type="Script" path="res://scenes/soldier.gd" id="1_2vdeq"]
 [ext_resource type="PackedScene" uid="uid://2evfdevetuuv" path="res://scenes/bullet.tscn" id="2_7s051"]
-[ext_resource type="Texture2D" uid="uid://bjli8xty6kca7" path="res://assets/SpriteSheet_characters.png" id="3_vln2k"]
+[ext_resource type="Texture2D" uid="uid://curkdqm4ojg1s" path="res://assets/vikingo/vikingo.svg" id="3_eyfnl"]
 [ext_resource type="PackedScene" uid="uid://cg62420mdncpj" path="res://scenes/health_bar.tscn" id="4_juclr"]
+[ext_resource type="Texture2D" uid="uid://dsiqfsrs7tx2f" path="res://assets/vikingo/vikingo_blue.svg" id="4_sdten"]
+[ext_resource type="Texture2D" uid="uid://cbwr4rp6ysg02" path="res://assets/vikingo/vikingo_up_blue.svg" id="5_l1o1i"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_56nh7"]
+radius = 16.0
 
 [sub_resource type="Animation" id="Animation_wxn1t"]
 resource_name = "Down_Idle"
@@ -13,31 +16,14 @@ length = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("spr_soldier:frame")
+tracks/0/path = NodePath("spr_soldier:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [18]
-}
-
-[sub_resource type="Animation" id="Animation_51neg"]
-resource_name = "Down_Walk"
-length = 0.3
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("spr_soldier:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [18, 19, 20]
+"values": [ExtResource("4_sdten")]
 }
 
 [sub_resource type="Animation" id="Animation_dihs1"]
@@ -45,14 +31,14 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("spr_soldier:frame")
+tracks/0/path = NodePath("spr_soldier:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [0]
+"values": [ExtResource("3_eyfnl")]
 }
 
 [sub_resource type="Animation" id="Animation_87grv"]
@@ -61,31 +47,14 @@ length = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("spr_soldier:frame")
+tracks/0/path = NodePath("spr_soldier:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [21]
-}
-
-[sub_resource type="Animation" id="Animation_oo87a"]
-resource_name = "Right_Walk"
-length = 0.3
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("spr_soldier:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [21, 22, 23]
+"values": [ExtResource("4_sdten")]
 }
 
 [sub_resource type="Animation" id="Animation_msows"]
@@ -94,82 +63,32 @@ length = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("spr_soldier:frame")
+tracks/0/path = NodePath("spr_soldier:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [24]
-}
-
-[sub_resource type="Animation" id="Animation_q18wx"]
-resource_name = "Up_Walk"
-length = 0.3
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("spr_soldier:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [24, 25, 26]
+"values": [ExtResource("5_l1o1i")]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_kfd0x"]
 _data = {
 "Down_Idle": SubResource("Animation_wxn1t"),
-"Down_Walk": SubResource("Animation_51neg"),
 "RESET": SubResource("Animation_dihs1"),
 "Right_Idle": SubResource("Animation_87grv"),
-"Right_Walk": SubResource("Animation_oo87a"),
-"Up_Idle": SubResource("Animation_msows"),
-"Up_Walk": SubResource("Animation_q18wx")
+"Up_Idle": SubResource("Animation_msows")
 }
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_vpw1l"]
 animation = &"Down_Idle"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_4jphu"]
-animation = &"Down_Walk"
-
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_0xda5"]
 animation = &"Right_Idle"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_78xk5"]
-animation = &"Right_Walk"
-
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_i42i2"]
 animation = &"Up_Idle"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_2mbh6"]
-animation = &"Up_Walk"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_k0740"]
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_2edkc"]
-switch_mode = 2
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_xnwod"]
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_gd8gi"]
-switch_mode = 2
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_rgh3o"]
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_gt2bp"]
-switch_mode = 2
-advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_yhddf"]
 advance_mode = 2
@@ -177,18 +96,12 @@ advance_mode = 2
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_w0ik8"]
 states/Down_Idle/node = SubResource("AnimationNodeAnimation_vpw1l")
 states/Down_Idle/position = Vector2(465.333, 223.333)
-states/Down_Walk/node = SubResource("AnimationNodeAnimation_4jphu")
-states/Down_Walk/position = Vector2(464.667, 356.333)
 states/Right_Idle/node = SubResource("AnimationNodeAnimation_0xda5")
 states/Right_Idle/position = Vector2(566.667, 139.667)
-states/Right_Walk/node = SubResource("AnimationNodeAnimation_78xk5")
-states/Right_Walk/position = Vector2(746.667, 138.778)
 states/Start/position = Vector2(216, 146.667)
 states/Up_Idle/node = SubResource("AnimationNodeAnimation_i42i2")
 states/Up_Idle/position = Vector2(470, 61.6667)
-states/Up_Walk/node = SubResource("AnimationNodeAnimation_2mbh6")
-states/Up_Walk/position = Vector2(469.778, -84.3333)
-transitions = ["Down_Idle", "Down_Walk", SubResource("AnimationNodeStateMachineTransition_k0740"), "Down_Walk", "Down_Idle", SubResource("AnimationNodeStateMachineTransition_2edkc"), "Up_Idle", "Up_Walk", SubResource("AnimationNodeStateMachineTransition_xnwod"), "Up_Walk", "Up_Idle", SubResource("AnimationNodeStateMachineTransition_gd8gi"), "Right_Idle", "Right_Walk", SubResource("AnimationNodeStateMachineTransition_rgh3o"), "Right_Walk", "Right_Idle", SubResource("AnimationNodeStateMachineTransition_gt2bp"), "Start", "Down_Idle", SubResource("AnimationNodeStateMachineTransition_yhddf")]
+transitions = ["Start", "Down_Idle", SubResource("AnimationNodeStateMachineTransition_yhddf")]
 graph_offset = Vector2(-12, -221)
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id="AnimationNodeStateMachinePlayback_3oruw"]
@@ -205,14 +118,13 @@ script = ExtResource("1_2vdeq")
 target_team = "team_red"
 bullet = ExtResource("2_7s051")
 
-[node name="col_soldier" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_56nh7")
-
 [node name="spr_soldier" type="Sprite2D" parent="."]
 texture_filter = 1
-texture = ExtResource("3_vln2k")
-hframes = 9
-vframes = 6
+position = Vector2(0, -8)
+texture = ExtResource("3_eyfnl")
+
+[node name="col_soldier" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_56nh7")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "Down_Idle"
@@ -238,14 +150,13 @@ collision_layer = 0
 collision_mask = 2
 
 [node name="col_damage" type="CollisionShape2D" parent="damage_area"]
-visible = false
 shape = SubResource("CircleShape2D_60h0b")
 debug_color = Color(0.964706, 0, 0.486275, 0.419608)
 
 [node name="hurt_timer" type="Timer" parent="."]
 
 [node name="health_bar" parent="." instance=ExtResource("4_juclr")]
-position = Vector2(0, -16)
+position = Vector2(0, -24)
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

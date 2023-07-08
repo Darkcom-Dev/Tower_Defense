@@ -9,6 +9,7 @@ var is_hurting : bool
 func _ready():
 	set_init_stats()
 	set_collisions()
+	$spr_ktower.z_index = position.y
 
 func set_init_stats():
 	randomize()
