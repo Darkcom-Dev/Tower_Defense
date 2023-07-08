@@ -2,7 +2,10 @@ extends CharacterBody2D
 
 
 @export var speed = 300.0
-@export var health = 100
+@export var health : float = 100.0
+@export var strength : float = 10.0
+
+var max_health : float
 
 @export var target_team : String
 @export var bullet : PackedScene
@@ -21,24 +24,33 @@ func _ready():
 	$Agent.path_desired_distance = 4.0
 	$Agent.target_desired_distance = 4.0
 	
-	call_deferred("actor_setup")
-	
+	#call_deferred("actor_setup")
+	set_initial_stats()
 	set_collisions()
 	#get_collisions_info()
+	
+	
+func set_initial_stats():
+	randomize()
+	health = randi_range(80,100)
+	strength = randi_range(8,12)
+	speed = randi_range(25,50)
+	
+	max_health = health
+	print('health: ' + str(health) + ' strength: ' + str(strength) + ' speed: ' + str(speed))
+	
+	
 
 func set_collisions():
-	if target_team == 'team_red':
-		set_collision_layer_value(3,true) #blue
-		set_collision_layer_value(2, false) #red
-		set_collision_mask_value(2,true) #red
-		set_collision_mask_value(3, false) #blue
-		$damage_area.set_collision_mask_value(2, true) #red
-	elif target_team == 'team_blue':
-		set_collision_layer_value(3,false) #blue
-		set_collision_layer_value(2, true) #red
-		set_collision_mask_value(2,false) #red
-		set_collision_mask_value(3, true) #blue
-		$damage_area.set_collision_mask_value(3, true) #blue
+	
+	set_collision_layer_value(3, is_in_group('team_blue')) #blue
+	set_collision_layer_value(2, is_in_group('team_red')) #red
+	
+	var red = target_team == 'team_red'
+	set_collision_mask_value(2,red) #red
+	set_collision_mask_value(3, not red) #blue
+	$damage_area.set_collision_mask_value(2 if red else 3, true) #red
+	
 		
 	
 func get_collisions_info():
@@ -49,7 +61,8 @@ func get_collisions_info():
 
 func actor_setup():
 	await  get_tree().physics_frame
-	set_destination(destination)
+	#set_destination(destination)
+	print('init')
 
 func set_destination(new_destination : Vector2):
 	destination = new_destination
@@ -105,7 +118,11 @@ func anim_control():
 		
 func _on_timer_timeout():
 	randomize()
-	set_destination(Vector2(randf_range(32,330), randf_range(40, 464)))
+	if is_in_group('team_blue'):
+		set_destination(Vector2(randf_range(32,330), randf_range(64, 150)))
+	elif is_in_group('team_red'):
+		set_destination(Vector2(randf_range(32,330), randf_range(360, 464)))
+	$Timer.wait_time = (randf_range(10,25))
 
 func _on_mouse_entered():
 	is_mouse_entered = true
@@ -116,23 +133,47 @@ func _on_mouse_exited():
 func set_damage(hit_damage : int):
 	
 	if health > 0:
+		print('hit_damage: ' + str(hit_damage) + ' health: ' + str(health))
 		health -= hit_damage
+				
 		is_hurting = true
 		$hurt_timer.start()
+		randomize_next_destination()
 	else:
 		health = 0
 		is_dead = true
 		queue_free()
+		
+	var normalized_health : float = float(health/max_health)
+	#print('normalized_health: ' + str(normalized_health) + ' hp:'+str(health)+ ' max_hp:' + str(max_health))
+	$health_bar.update_health_bar(normalized_health)
 
 func _on_damage_area_body_entered(body):
-	if body.is_in_group(target_team):
-		print('body_name: ' + body.name + ' is_entered to: ' + name)
+	if body.is_in_group(target_team):		
 		var bullet_instance = bullet.instantiate()		
 		root.call_deferred('add_child',bullet_instance)
 		bullet_instance.global_position = global_position
 		bullet_instance.set_direction(body.position - position)
 		bullet_instance.set_target_team(target_team)
+		
+		bullet_instance.set_damage_collision_mask(2 if target_team == 'team_red' else 3)
+		
+		bullet_instance.set_target_team(target_team)
+		
+		randomize_next_destination()
+	if 'bullet' in body.name:
+		randomize_next_destination()
+			
 
+func randomize_next_destination():
+	if position.x < 165:
+		var xpos = randf_range(165,330)
+		var ypos = randf_range(64,464)
+		set_destination(Vector2(xpos,ypos))
+	else:
+		var xpos = randf_range(0,165)
+		var ypos = randf_range(64,464)
+		set_destination(Vector2(xpos,ypos))
 
 func _on_hurt_timer_timeout():
 	is_hurting = false

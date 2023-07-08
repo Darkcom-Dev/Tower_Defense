@@ -1,9 +1,9 @@
-[gd_scene load_steps=30 format=3 uid="uid://b73qehd3ksue2"]
+[gd_scene load_steps=30 format=3 uid="uid://dg4mo1stij2x6"]
 
-[ext_resource type="Texture2D" uid="uid://bjli8xty6kca7" path="res://assets/SpriteSheet_characters.png" id="1_1bnva"]
-[ext_resource type="Script" path="res://scenes/soldier.gd" id="1_nvt1h"]
-[ext_resource type="PackedScene" uid="uid://2evfdevetuuv" path="res://scenes/bullet.tscn" id="2_q6jvs"]
-[ext_resource type="PackedScene" uid="uid://cg62420mdncpj" path="res://scenes/health_bar.tscn" id="3_twne2"]
+[ext_resource type="Script" path="res://scenes/soldier.gd" id="1_aww6x"]
+[ext_resource type="PackedScene" uid="uid://2evfdevetuuv" path="res://scenes/bullet.tscn" id="2_i2xme"]
+[ext_resource type="Texture2D" uid="uid://bjli8xty6kca7" path="res://assets/SpriteSheet_characters.png" id="3_brrty"]
+[ext_resource type="PackedScene" uid="uid://cg62420mdncpj" path="res://scenes/health_bar.tscn" id="4_nth7y"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_56nh7"]
 
@@ -20,7 +20,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [0, 1, 2]
+"values": [9, 10, 11]
 }
 
 [sub_resource type="Animation" id="Animation_51neg"]
@@ -37,7 +37,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [0, 1, 2]
+"values": [9, 10, 11]
 }
 
 [sub_resource type="Animation" id="Animation_dihs1"]
@@ -68,7 +68,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [3]
+"values": [12]
 }
 
 [sub_resource type="Animation" id="Animation_oo87a"]
@@ -85,7 +85,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [3, 4, 5]
+"values": [12, 13, 14]
 }
 
 [sub_resource type="Animation" id="Animation_msows"]
@@ -101,7 +101,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [6]
+"values": [15]
 }
 
 [sub_resource type="Animation" id="Animation_q18wx"]
@@ -118,7 +118,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [6, 7, 8]
+"values": [15, 16, 17]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_kfd0x"]
@@ -196,19 +196,22 @@ graph_offset = Vector2(-12, -221)
 [sub_resource type="CircleShape2D" id="CircleShape2D_60h0b"]
 radius = 32.0
 
-[node name="soldier" type="CharacterBody2D"]
+[node name="soldier" type="CharacterBody2D" groups=["team_red"]]
 y_sort_enabled = true
+collision_layer = 2
+collision_mask = 5
 input_pickable = true
-script = ExtResource("1_nvt1h")
+script = ExtResource("1_aww6x")
 target_team = "team_red"
-bullet = ExtResource("2_q6jvs")
+bullet = ExtResource("2_i2xme")
 
 [node name="col_soldier" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_56nh7")
 
 [node name="spr_soldier" type="Sprite2D" parent="."]
+modulate = Color(1, 0, 0, 1)
 texture_filter = 1
-texture = ExtResource("1_1bnva")
+texture = ExtResource("3_brrty")
 hframes = 9
 vframes = 6
 
@@ -232,7 +235,7 @@ parameters/playback = SubResource("AnimationNodeStateMachinePlayback_3oruw")
 
 [node name="damage_area" type="Area2D" parent="."]
 collision_layer = 0
-collision_mask = 0
+collision_mask = 4
 
 [node name="col_damage" type="CollisionShape2D" parent="damage_area"]
 shape = SubResource("CircleShape2D_60h0b")
@@ -240,7 +243,7 @@ debug_color = Color(0.964706, 0, 0.486275, 0.419608)
 
 [node name="hurt_timer" type="Timer" parent="."]
 
-[node name="health_bar" parent="." instance=ExtResource("3_twne2")]
+[node name="health_bar" parent="." instance=ExtResource("4_nth7y")]
 position = Vector2(0, -16)
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]

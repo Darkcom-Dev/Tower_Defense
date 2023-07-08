@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://dolv0bumfs81l"]
+[gd_scene load_steps=11 format=3 uid="uid://dolv0bumfs81l"]
 
 [ext_resource type="Texture2D" uid="uid://kds70qde6meu" path="res://assets/tower.png" id="1_7p6cm"]
 [ext_resource type="Script" path="res://scenes/tower.gd" id="1_l171u"]
 [ext_resource type="PackedScene" uid="uid://2evfdevetuuv" path="res://scenes/bullet.tscn" id="2_d4ijb"]
+[ext_resource type="PackedScene" uid="uid://cg62420mdncpj" path="res://scenes/health_bar.tscn" id="4_w3ca4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pbjdn"]
 size = Vector2(42, 50)
@@ -63,7 +64,7 @@ _data = {
 [sub_resource type="CircleShape2D" id="CircleShape2D_42g7w"]
 radius = 96.0
 
-[node name="tower" type="Area2D"]
+[node name="tower" type="CharacterBody2D"]
 texture_filter = 1
 script = ExtResource("1_l171u")
 bullet = ExtResource("2_d4ijb")
@@ -89,5 +90,8 @@ collision_mask = 2
 
 [node name="col_damage" type="CollisionShape2D" parent="damage_area"]
 shape = SubResource("CircleShape2D_42g7w")
+
+[node name="health_bar" parent="." instance=ExtResource("4_w3ca4")]
+position = Vector2(0, -32)
 
 [connection signal="body_entered" from="damage_area" to="." method="_on_damage_area_body_entered"]

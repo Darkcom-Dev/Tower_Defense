@@ -13,6 +13,12 @@ func set_damage_collision_mask(value_index : int):
 	set_collision_mask_value(2,false)
 	set_collision_mask_value(3,false)
 	set_collision_mask_value(value_index, true)
+	
+	$damage_area.set_collision_mask_value(2,false)
+	$damage_area.set_collision_mask_value(3,false)
+	$damage_area.set_collision_mask_value(value_index, true)
+	
+	print('blue')
 
 func set_target_team(new_target_team : String):
 	target_team = new_target_team

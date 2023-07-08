@@ -1,11 +1,19 @@
-[gd_scene load_steps=3 format=3 uid="uid://cg62420mdncpj"]
+[gd_scene load_steps=4 format=3 uid="uid://cg62420mdncpj"]
 
+[ext_resource type="Script" path="res://scenes/health_bar.gd" id="1_4ss5t"]
 [ext_resource type="Texture2D" uid="uid://bethv3hk11vlh" path="res://assets/BG-Health.png" id="1_6cwiw"]
 [ext_resource type="Texture2D" uid="uid://dayswc51s0arm" path="res://assets/health_bar.png" id="2_2oji4"]
 
-[node name="health_bar" type="Sprite2D"]
-texture_filter = 1
-texture = ExtResource("1_6cwiw")
+[node name="health_bar" type="Node2D"]
+script = ExtResource("1_4ss5t")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="BG" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(-32, -4)
+texture = ExtResource("1_6cwiw")
+centered = false
+
+[node name="bar" type="Sprite2D" parent="BG"]
+position = Vector2(4, 2)
 texture = ExtResource("2_2oji4")
+centered = false

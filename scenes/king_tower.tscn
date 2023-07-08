@@ -1,11 +1,17 @@
-[gd_scene load_steps=3 format=3 uid="uid://d1q0bhmlv80sl"]
+[gd_scene load_steps=6 format=3 uid="uid://d1q0bhmlv80sl"]
 
+[ext_resource type="Script" path="res://scenes/king_tower.gd" id="1_3dej4"]
 [ext_resource type="Texture2D" uid="uid://cc3enq7cexwif" path="res://assets/king_tower.png" id="1_i8bye"]
+[ext_resource type="PackedScene" uid="uid://cg62420mdncpj" path="res://scenes/health_bar.tscn" id="3_3s8qc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ysl2i"]
 size = Vector2(54, 62)
 
-[node name="king_tower" type="Area2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_apcef"]
+radius = 96.0
+
+[node name="king_tower" type="CharacterBody2D"]
+script = ExtResource("1_3dej4")
 
 [node name="spr_ktower" type="Sprite2D" parent="."]
 texture_filter = 1
@@ -14,3 +20,16 @@ texture = ExtResource("1_i8bye")
 [node name="col_tower" type="CollisionShape2D" parent="."]
 position = Vector2(3, 8)
 shape = SubResource("RectangleShape2D_ysl2i")
+
+[node name="hurt_time" type="Timer" parent="."]
+
+[node name="health_bar" parent="." instance=ExtResource("3_3s8qc")]
+position = Vector2(0, -40)
+
+[node name="damage_area" type="Area2D" parent="."]
+
+[node name="col_area" type="CollisionShape2D" parent="damage_area"]
+shape = SubResource("CircleShape2D_apcef")
+debug_color = Color(0.972549, 0, 0.45098, 0.419608)
+
+[connection signal="timeout" from="hurt_time" to="." method="_on_hurt_time_timeout"]
